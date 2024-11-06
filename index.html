@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$TEARS - The Coin That Cares</title>
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Courier New', Courier, monospace;
+      color: #ffffff;
+    }
+
+    body {
+      background: #1b1b1b;
+      overflow: hidden;
+    }
+
+    /* Rain Effect */
+    .rain {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .rain-drop {
+      position: absolute;
+      width: 2px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.1);
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100vh); }
+    }
+
+    /* Glitch Text */
+    .glitch {
+      font-size: 3rem;
+      position: relative;
+      animation: glitch 1s infinite;
+    }
+
+    .glitch:before,
+    .glitch:after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .glitch:before {
+      left: 2px;
+      text-shadow: -2px 0 red;
+      animation: glitch-anim 1s infinite;
+    }
+
+    .glitch:after {
+      left: -2px;
+      text-shadow: -2px 0 cyan;
+      animation: glitch-anim2 1s infinite;
+    }
+
+    @keyframes glitch {
+      0%, 100% { transform: none; }
+      50% { transform: skew(0.5deg); }
+    }
+
+    @keyframes glitch-anim {
+      0% { clip: rect(24px, 9999px, 65px, 0); }
+      50% { clip: rect(56px, 9999px, 80px, 0); }
+      100% { clip: rect(24px, 9999px, 65px, 0); }
+    }
+
+    @keyframes glitch-anim2 {
+      0% { clip: rect(85px, 9999px, 140px, 0); }
+      50% { clip: rect(30px, 9999px, 60px, 0); }
+      100% { clip: rect(85px, 9999px, 140px, 0); }
+    }
+
+    /* Section Styling */
+    .container {
+      padding: 50px;
+      text-align: center;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #444;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      border: 2px solid #888;
+      cursor: pointer;
+      transition: 0.3s;
+      animation: flicker 1.5s infinite alternate;
+    }
+
+    .button:hover {
+      background: #666;
+      border-color: #ccc;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+
+    .testimonial {
+      margin: 40px 0;
+      font-style: italic;
+      opacity: 0.8;
+    }
+
+    .footer {
+      margin-top: 100px;
+      font-size: 0.9rem;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <!-- Rain Effect -->
+  <div class="rain"></div>
+
+  <!-- Content -->
+  <div class="container">
+    <h1 class="glitch" data-text="$TEARS">$TEARS</h1>
+    <h2 class="glitch" data-text="The Coin That Cares">The Coin That Cares</h2>
+    <p>For when the market is as disappointing as everything else.</p>
+    <a href="#" class="button">Buy $TEARS (Why Bother?)</a>
+
+    <h3>Why Another Coin? Why Not.</h3>
+    <p>$TEARS is here because everything else let you down. In a world of broken dreams and unmet expectations, here’s another one.</p>
+
+    <h3>Testimonials</h3>
+    <p class="testimonial">“Lost 90% of my life savings, 10/10 would cry again.” – Johnny Depressed</p>
+    <p class="testimonial">“Finally, a coin that gets my existential dread.” – Lana Del My Life</p>
+
+    <h3>Roadmap to Rock Bottom</h3>
+    <ul>
+      <li>Phase 1: Launch and Disappointment – Completed</li>
+      <li>Phase 2: Community Tears – In Progress</li>
+      <li>Phase 3: Global Disillusionment – Pending</li>
+      <li>Phase 4: Cry Eternal – Always</li>
+    </ul>
+
+    <div class="footer">
+      <p>Where Hope Goes to Die | FAQ | Contact Us | Whitepaper</p>
+      <p>Email: <a href="mailto:noreply@cryingcorp.com">noreply@cryingcorp.com</a></p>
+    </div>
+  </div>
+
+  <!-- JavaScript for Rain Effect -->
+  <script>
+    function createRain() {
+      const rainContainer = document.querySelector('.rain');
+      for (let i = 0; i < 100; i++) {
+        const rainDrop = document.createElement('div');
+        rainDrop.classList.add('rain-drop');
+        rainDrop.style.left = `${Math.random() * 100}vw`;
+        rainDrop.style.animationDuration = `${Math.random() * 2 + 2}s`;
+        rainDrop.style.animationDelay = `${Math.random() * 5}s`;
+        rainContainer.appendChild(rainDrop);
+      }
+    }
+    createRain();
+  </script>
+</body>
+</html>
