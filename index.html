@@ -18,12 +18,12 @@
       background: linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95)), url('rain.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #ffffff;
-      overflow-y: auto;
+      overflow-y: auto; /* Ensures the page can scroll */
     }
 
     /* Rain Effect */
     .rain {
-      position: fixed;
+      position: fixed; /* Keeps the rain effect in place */
       top: 0;
       left: 0;
       width: 100%;
@@ -45,6 +45,23 @@
       100% { transform: translateY(100vh); }
     }
 
+    /* Logo Styling */
+    .logo-container {
+      text-align: center;
+      margin-bottom: 20px; /* Spacing below the logo */
+    }
+
+    .logo {
+      max-width: 150px; /* Adjust the size */
+      height: auto;
+      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); /* Adds a subtle glow */
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .logo:hover {
+      transform: scale(1.1); /* Slight zoom-in effect on hover */
+    }
+
     /* Container */
     .container {
       padding: 50px;
@@ -58,8 +75,8 @@
     .glitch {
       font-size: 3rem;
       position: relative;
-      color: #d3d3d3;
-      text-shadow: 1px 1px 2px rgba(211, 211, 211, 0.6);
+      color: #d3d3d3; /* Light grey color for the main heading */
+      text-shadow: 1px 1px 2px rgba(211, 211, 211, 0.6); /* Softer light grey shadow */
       animation: glitch 1s infinite alternate-reverse;
     }
 
@@ -128,11 +145,8 @@
       100% { transform: scale(1.03); }
     }
 
-    /* Section Styling with Fade-In Effect */
+    /* Section Styling */
     section {
-      opacity: 0;
-      transform: translateY(20px); /* Starts with slight upward offset */
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
       padding: 40px;
       max-width: 800px;
       margin: 20px auto;
@@ -140,11 +154,6 @@
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid #333;
       border-radius: 8px;
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0); /* Fades in and returns to original position */
     }
 
     h3 {
@@ -157,6 +166,14 @@
       color: #cccccc;
       font-size: 1.1rem;
       margin-bottom: 10px;
+    }
+
+    /* Testimonials */
+    .testimonial {
+      font-style: italic;
+      color: #cccccc;
+      opacity: 0.8;
+      margin-bottom: 20px;
     }
 
     /* Footer */
@@ -177,6 +194,27 @@
     .footer a:hover {
       color: #ffffff;
     }
+
+    /* FAQ Styling */
+    .faq p {
+      color: #bbbbbb;
+      margin-bottom: 15px;
+    }
+
+    .faq p strong {
+      color: #ffffff;
+    }
+    /* Fade-in effect for sections */
+    section {
+      opacity: 0;
+      transform: translateY(20px); /* Slight upward movement for effect */
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0); /* Moves back to original position */
+    }
   </style>
 </head>
 <body>
@@ -185,6 +223,9 @@
 
   <!-- Hero Section -->
   <div class="container">
+    <div class="logo-container">
+      <img src="https://i.ibb.co/mqWGC11/4d6a01a5-0433-4359-8db1-e613244aad55.webp" alt="TEARS Logo" class="logo">
+    </div>
     <h1 class="glitch" data-text="$TEARS">$TEARS</h1>
     <h2 class="glitch" data-text="The Coin That Cares">The Coin That Cares</h2>
     <p>For when the market is as disappointing as everything else.</p>
