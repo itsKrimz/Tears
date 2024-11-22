@@ -232,15 +232,293 @@
     <a href="#" class="button">Buy $TEARS (Why Bother?)</a>
   </div>
 
-    <!-- Embedded Audio Section -->
-    <div style="height: 228px; width: 600px; margin: 20px auto;">
-      <iframe src="https://audio.com/embed/audio/1816384909829860?theme=dark" style="display:block; border-radius: 1px; border: none; height: 204px; width: 600px;">
-      </iframe>
-      <a href="https://audio.com/tearsonsolona" style="text-align: center; display: block; color: #A4ABB6; font-size: 12px; font-family: sans-serif; line-height: 16px; margin-top: 8px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-        @tearsonsolona
-      </a>
-    </div>
+<!-- Left Audio Popup -->
+<button class="audio-trigger left" onclick="togglePopup('left')" title="Play Song One">
+  <img src="https://i.ibb.co/mqWGC11/4d6a01a5-0433-4359-8db1-e613244aad55.webp" alt="Song One" class="button-image">
+</button>
+<div class="audio-popup left" id="popup-left">
+  <div class="audio-content">
+    <h3>Now Playing: Playlist One</h3>
+    <iframe src="https://audio.com/embed/audio/1816384909829860?theme=dark" style="height: 200px; width: 100%; border-radius: 8px;"></iframe>
+    <a href="https://audio.com/tearsonsolona" target="_blank" style="display: block; color: #A4ABB6; font-size: 14px; text-align: center; margin-top: 10px; text-decoration: none;">
+      Visit @tearsonsolona
+    </a>
+    <button class="close-button" onclick="togglePopup('left')">✖ Close</button>
   </div>
+</div>
+
+<!-- Right Audio Popup -->
+<button class="audio-trigger right" onclick="togglePopup('right')" title="Play Song Two">
+  <img src="https://i.ibb.co/mqWGC11/4d6a01a5-0433-4359-8db1-e613244aad55.webp" alt="Song Two" class="button-image">
+</button>
+<div class="audio-popup right" id="popup-right">
+  <div class="audio-content">
+    <h3>Now Playing: Playlist Two</h3>
+    <iframe src="https://audio.com/embed/audio/1816388938402023?theme=image" style="height: 200px; width: 100%; border-radius: 8px;"></iframe>
+    <a href="https://audio.com/tearsonsolona" target="_blank" style="display: block; color: #A4ABB6; font-size: 14px; text-align: center; margin-top: 10px; text-decoration: none;">
+      Visit @tearsonsolona
+    </a>
+    <button class="close-button" onclick="togglePopup('right')">✖ Close</button>
+  </div>
+</div>
+
+<style>
+  /* Trigger Button Styling */
+  .audio-trigger {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background: none; /* Remove the grey oval */
+    border: none;
+    padding: 0;
+    z-index: 1000;
+  }
+
+  .audio-trigger.left {
+    left: 20px;
+  }
+
+  .audio-trigger.right {
+    right: 20px;
+  }
+
+  .button-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for a button effect */
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .button-image:hover {
+    transform: scale(1.1);
+  }
+
+  /* Popup Styling */
+  .audio-popup {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%) translateX(-110%);
+    width: 320px;
+    background: #222;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+    z-index: 999;
+    color: #fff;
+  }
+
+  .audio-popup.right {
+    transform: translateY(-50%) translateX(110%);
+    right: 20px;
+  }
+
+  .audio-popup.active {
+    transform: translateY(-50%) translateX(0);
+  }
+
+  .audio-content {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .audio-content h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #fff;
+  }
+
+  .audio-content iframe {
+    width: 100%;
+    height: 200px;
+    border: none;
+  }
+
+  .close-button {
+    background: #444;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 12px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .close-button:hover {
+    background: #555;
+  }
+</style>
+
+<script>
+  function togglePopup(side) {
+    const popup = document.getElementById(`popup-${side}`);
+    popup.classList.toggle('active');
+  }
+</script>
+
+<!-- Left DexScreener Button -->
+<button class="audio-trigger left dex-button" onclick="window.open('https://www.dexscreener.com', '_blank')" title="View DexScreener">
+  <img src="https://play-lh.googleusercontent.com/lNQF3uNDTmf9NrqoHziCB_rQArSQ5TU6WFbitX2VMiKQSC7MAg45GFm7T0CqCZRQGw" alt="DexScreener Logo Left" class="button-image">
+</button>
+
+<!-- Right DexScreener Button -->
+<button class="audio-trigger right dex-button" onclick="window.open('https://www.dexscreener.com', '_blank')" title="View DexScreener">
+  <img src="https://play-lh.googleusercontent.com/lNQF3uNDTmf9NrqoHziCB_rQArSQ5TU6WFbitX2VMiKQSC7MAg45GFm7T0CqCZRQGw" alt="DexScreener Logo Right" class="button-image">
+</button>
+
+<style>
+  /* Trigger Button Styling */
+  .audio-trigger {
+    position: fixed;
+    cursor: pointer;
+    background: none; /* No background for circular logo */
+    border: none;
+    padding: 0;
+    z-index: 1000;
+  }
+
+  .audio-trigger.left {
+    left: 20px;
+  }
+
+  .audio-trigger.right {
+    right: 20px;
+  }
+
+  /* Position DexScreener Buttons Below Existing Options */
+  .dex-button {
+    top: calc(50% + 80px); /* Lowered relative to song buttons */
+  }
+
+  .button-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for a button effect */
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .button-image:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+  }
+</style>
+
+<!-- Left X.com Button -->
+<button class="audio-trigger left x-button" onclick="window.open('https://www.x.com', '_blank')" title="Visit X.com">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/X_logo.jpg/800px-X_logo.jpg" alt="X Logo Left" class="button-image">
+</button>
+
+<!-- Right X.com Button -->
+<button class="audio-trigger right x-button" onclick="window.open('https://www.x.com', '_blank')" title="Visit X.com">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/X_logo.jpg/800px-X_logo.jpg" alt="X Logo Right" class="button-image">
+</button>
+
+<style>
+  /* Trigger Button Styling */
+  .audio-trigger {
+    position: fixed;
+    cursor: pointer;
+    background: none; /* No background for circular logo */
+    border: none;
+    padding: 0;
+    z-index: 1000;
+  }
+
+  .audio-trigger.left {
+    left: 20px;
+  }
+
+  .audio-trigger.right {
+    right: 20px;
+  }
+
+  /* Position DexScreener Buttons Below Existing Options */
+  .dex-button {
+    top: calc(50% + 80px); /* Lowered relative to song buttons */
+  }
+
+  /* Position X.com Buttons Below DexScreener */
+  .x-button {
+    top: calc(50% + 160px); /* Lowered relative to DexScreener buttons */
+  }
+
+  .button-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for a button effect */
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .button-image:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+  }
+</style>
+<!-- Left Telegram Button -->
+<button class="audio-trigger left telegram-button" onclick="window.open('https://www.telegram.com', '_blank')" title="Visit Telegram">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2CPgjl8K_eZ_HNfdC6NiYeYDmEs0TBtpewg&s" alt="Telegram Logo Left" class="button-image">
+</button>
+
+<!-- Right Telegram Button -->
+<button class="audio-trigger right telegram-button" onclick="window.open('https://www.telegram.com', '_blank')" title="Visit Telegram">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2CPgjl8K_eZ_HNfdC6NiYeYDmEs0TBtpewg&s" alt="Telegram Logo Right" class="button-image">
+</button>
+
+<style>
+  /* Trigger Button Styling */
+  .audio-trigger {
+    position: fixed;
+    cursor: pointer;
+    background: none; /* No background for circular logo */
+    border: none;
+    padding: 0;
+    z-index: 1000;
+  }
+
+  .audio-trigger.left {
+    left: 20px;
+  }
+
+  .audio-trigger.right {
+    right: 20px;
+  }
+
+  /* Position DexScreener Buttons Below Existing Options */
+  .dex-button {
+    top: calc(50% + 80px); /* Lowered relative to song buttons */
+  }
+
+  /* Position X.com Buttons Below DexScreener */
+  .x-button {
+    top: calc(50% + 160px); /* Lowered relative to DexScreener buttons */
+  }
+
+  /* Position Telegram Buttons Below X.com */
+  .telegram-button {
+    top: calc(50% + 240px); /* Lowered relative to X.com buttons */
+  }
+
+  .button-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for a button effect */
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .button-image:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+  }
+</style>
+
+
 
   <!-- About Section -->
   <section class="about">
