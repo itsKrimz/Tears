@@ -32,13 +32,14 @@
       overflow: hidden;
     }
 
-    .rain-drop {
-      position: absolute;
-      width: 2px;
-      height: 60px;
-      background: rgba(255, 255, 255, 0.1);
-      animation: fall linear infinite;
-    }
+	.rain-drop {
+		position: absolute;
+		width: 2px;
+		height: 60px;
+		background: rgba(255, 0, 0, 0.7); /* Red color with transparency */
+		animation: fall linear infinite;
+	}
+
 
     @keyframes fall {
       0% { transform: translateY(-100%); }
@@ -145,16 +146,18 @@
       100% { transform: scale(1.03); }
     }
 
-    /* Section Styling */
-    section {
-      padding: 40px;
-      max-width: 800px;
-      margin: 20px auto;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #333;
-      border-radius: 8px;
-    }
+/* Section Styling */
+section {
+  padding: 40px;
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: center;
+  background: rgba(255, 0, 0, 0.1); /* Adds a light red tint to the background */
+  border: 1px solid rgba(255, 0, 0, 0.5); /* Red border with transparency */
+  border-radius: 8px; /* Keeps the rounded corners */
+  box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2); /* Subtle red shadow for emphasis */
+}
+
 
     h3 {
       color: #bbbbbb;
@@ -191,19 +194,28 @@
       transition: color 0.3s ease;
     }
 
-    .footer a:hover {
-      color: #ffffff;
-    }
+.footer {
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 20px;
+  background: rgba(255, 0, 0, 0.1); /* Light red background tint */
+  border-top: 1px solid rgba(255, 0, 0, 0.5); /* Red border for the top */
+  color: rgba(255, 0, 0, 0.8); /* Red text with a subtle transparency */
+  opacity: 1; /* Ensure full visibility */
+}
 
-    /* FAQ Styling */
-    .faq p {
-      color: #bbbbbb;
-      margin-bottom: 15px;
-    }
+.footer a {
+  color: rgba(255, 0, 0, 0.8); /* Red links */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
 
-    .faq p strong {
-      color: #ffffff;
-    }
+.footer a:hover {
+  color: rgba(255, 50, 50, 1); /* Slightly brighter red on hover */
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.7); /* Glow effect on hover */
+}
+
     /* Fade-in effect for sections */
     section {
       opacity: 0;
@@ -224,7 +236,7 @@
   <!-- Hero Section -->
   <div class="container">
     <div class="logo-container">
-      <img src="https://cdn.discordapp.com/attachments/1244721739544662036/1309368704856887397/thrillhouse_01_A_cyberpunk_graphic_of_an_Illuminati_eye_surroun_e4a9a24f-1f99-45d6-b1a8-003038cc58c7_1.png?ex=67415422&is=674002a2&hm=9104294e33ec50252c7eb6bbf42625f767e546f4336c1a05347da40d079ffab7&" alt="TEARS Logo" class="logo">
+      <img src="https://i.ibb.co/tPk3Kpk/thrillhouse-01-A-cyberpunk-graphic-of-an-Illuminati-eye-surroun-e4a9a24f-1f99-45d6-b1a8-003038cc58c7.png" alt="TEARS Logo" class="logo">
     </div>
     <h1 class="glitch" data-text="$TEARS">$TEARS</h1>
     <h2 class="glitch" data-text="The Coin That Cares">The Coin That Cares</h2>
@@ -234,7 +246,7 @@
 
 <!-- Left Audio Popup -->
 <button class="audio-trigger left" onclick="togglePopup('left')" title="Play Song One">
-  <img src="https://cdn.discordapp.com/attachments/1244721739544662036/1309368704856887397/thrillhouse_01_A_cyberpunk_graphic_of_an_Illuminati_eye_surroun_e4a9a24f-1f99-45d6-b1a8-003038cc58c7_1.png?ex=67415422&is=674002a2&hm=9104294e33ec50252c7eb6bbf42625f767e546f4336c1a05347da40d079ffab7&" alt="Song One" class="button-image">
+  <img src="https://i.ibb.co/tPk3Kpk/thrillhouse-01-A-cyberpunk-graphic-of-an-Illuminati-eye-surroun-e4a9a24f-1f99-45d6-b1a8-003038cc58c7.png" alt="Song One" class="button-image">
 </button>
 <div class="audio-popup left" id="popup-left">
   <div class="audio-content">
@@ -249,7 +261,7 @@
 
 <!-- Right Audio Popup -->
 <button class="audio-trigger right" onclick="togglePopup('right')" title="Play Song Two">
-  <img src="https://cdn.discordapp.com/attachments/1244721739544662036/1309368704856887397/thrillhouse_01_A_cyberpunk_graphic_of_an_Illuminati_eye_surroun_e4a9a24f-1f99-45d6-b1a8-003038cc58c7_1.png?ex=67415422&is=674002a2&hm=9104294e33ec50252c7eb6bbf42625f767e546f4336c1a05347da40d079ffab7&" alt="Song Two" class="button-image">
+  <img src="https://i.ibb.co/tPk3Kpk/thrillhouse-01-A-cyberpunk-graphic-of-an-Illuminati-eye-surroun-e4a9a24f-1f99-45d6-b1a8-003038cc58c7.png" alt="Song Two" class="button-image">
 </button>
 <div class="audio-popup right" id="popup-right">
   <div class="audio-content">
@@ -585,9 +597,9 @@
 
   <!-- Footer -->
   <div class="footer">
-    <p>Where Hope Goes to Die | <a href="#">FAQ</a> | <a href="mailto:noreply@cryingcorp.com">Contact Us</a> | <a href="#">Whitepaper</a></p>
+    <p>Where Hope Goes to Die | <a href="faq.html">FAQ</a> | <a href="mailto:noreply@cryingcorp.com">Contact Us</a> | <a href="whitepaper.html">Read the Whitepaper</a>
     <p>Email: <a href="mailto:noreply@cryingcorp.com">noreply@cryingcorp.com</a></p>
-    <p>© $TEARS Token. 2023. All rights reserved, or maybe not. It’s all the same.</p>
+    <p>© $TEARS Token. 2024. All rights reserved, or maybe not. It’s all the same.</p>
   </div>
 
   <!-- JavaScript for Rain Effect and Scroll Fade-In -->
