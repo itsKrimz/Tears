@@ -26,16 +26,34 @@ body {
 
 .rain-drop {
   position: absolute;
-  width: 2px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.1);
-  animation: fall linear infinite;
+  width: 150px; /* Half of the image width */
+  height: 240px; /* Half of the image height */
+  background: url('https://www.clipartmax.com/png/small/112-1123876_red-tear-clip-art-at-clker-red-tear-drop-clip-art.png') no-repeat center center;
+  background-size: contain; /* Ensure the image fits within the element */
+  animation: fall linear infinite; /* Falling animation */
 }
 
 @keyframes fall {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
+  0% {
+    transform: translateY(-100%); /* Start above the viewport */
+  }
+  100% {
+    transform: translateY(100vh); /* End below the viewport */
+  }
 }
+
+
+.rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+
 
 /* Container */
 .container {
@@ -143,6 +161,7 @@ p, li {
   margin-bottom: 10px;
 }
 
+
 /* Testimonials */
 .testimonial {
   font-style: italic;
@@ -150,6 +169,24 @@ p, li {
   opacity: 0.8;
   margin-bottom: 20px;
 }
+
+#connect-wallet {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background: #444;
+  color: #fff;
+  border: 2px solid #888;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#connect-wallet:hover {
+  background: #555;
+  border-color: #bbb;
+}
+
 
 /* Footer */
 .footer {
