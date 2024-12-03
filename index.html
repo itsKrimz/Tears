@@ -689,46 +689,35 @@ section {
   window.addEventListener("scroll", handleScroll);
   handleScroll(); // Trigger on load to show any sections already in view
 
-  // Phantom Wallet Connection Logic
-  function isPhantomWalletInstalled() {
-    return window.solana && window.solana.isPhantom;
-  }
-
+<script>
+  // Detect Phantom Wallet
   async function connectPhantomWallet() {
-    if (isPhantomWalletInstalled()) {
+    if (window.solana && window.solana.isPhantom) {
+      console.log("Phantom Wallet detected.");
+
       try {
+        // Connect to Phantom Wallet
         const response = await window.solana.connect();
         const walletAddress = response.publicKey.toString();
 
-        // Display the wallet address
-        const walletAddressText = document.getElementById('wallet-address');
-        walletAddressText.innerText = `Connected Wallet Address: ${walletAddress}`;
-
-        // Update button text and disable it
-        const connectButton = document.getElementById('connect-wallet');
-        connectButton.innerText = 'Wallet Connected';
-        connectButton.disabled = true;
+        // Update UI with the wallet address
+        const walletAddressElement = document.getElementById('wallet-address');
+        walletAddressElement.innerText = `Connected Wallet Address: ${walletAddress}`;
       } catch (error) {
-        console.error('Error connecting to Phantom Wallet:', error);
-        alert('Failed to connect to Phantom Wallet. Please try again.');
+        console.error("Error connecting to Phantom Wallet:", error);
       }
     } else {
-      alert('Phantom Wallet is not installed. Please install it from https://phantom.app.');
+      console.error("Phantom Wallet not found. Please install it from https://phantom.app.");
+      alert("Phantom Wallet is not installed or detected.");
     }
   }
 
-  // Add event listener to the connect wallet button
   document.addEventListener('DOMContentLoaded', () => {
     const connectButton = document.getElementById('connect-wallet');
     connectButton.addEventListener('click', connectPhantomWallet);
   });
-
-  // Popup Toggle Function
-  function togglePopup(side) {
-    const popup = document.getElementById(`popup-${side}`);
-    popup.classList.toggle('active');
-  }
 </script>
+
 
 </body>
 </html>
