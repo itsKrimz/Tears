@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>$TEARS - The Coin That Cares</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
   <style>
     /* Reset and Global Styling */
     * {
@@ -691,32 +691,49 @@ section {
 
 <script>
   // Detect Phantom Wallet
+  function isPhantomWalletInstalled() {
+    console.log("Checking for Phantom Wallet...");
+    const isInstalled = window.solana && window.solana.isPhantom;
+    console.log("Phantom Wallet Installed:", isInstalled);
+    return isInstalled;
+  }
+
+  // Handle wallet connection
   async function connectPhantomWallet() {
-    if (window.solana && window.solana.isPhantom) {
-      console.log("Phantom Wallet detected.");
-
+    console.log("Connect Wallet button clicked.");
+    if (isPhantomWalletInstalled()) {
       try {
-        // Connect to Phantom Wallet
+        console.log("Connecting to Phantom Wallet...");
         const response = await window.solana.connect();
+        console.log("Connected to Phantom Wallet:", response);
         const walletAddress = response.publicKey.toString();
+        console.log("Wallet Address:", walletAddress);
 
-        // Update UI with the wallet address
+        // Display the wallet address
         const walletAddressElement = document.getElementById('wallet-address');
         walletAddressElement.innerText = `Connected Wallet Address: ${walletAddress}`;
       } catch (error) {
         console.error("Error connecting to Phantom Wallet:", error);
+        alert("Failed to connect to Phantom Wallet. Please try again.");
       }
     } else {
-      console.error("Phantom Wallet not found. Please install it from https://phantom.app.");
-      alert("Phantom Wallet is not installed or detected.");
+      console.error("Phantom Wallet not detected.");
+      alert("Phantom Wallet is not installed. Please install it from https://phantom.app.");
     }
   }
 
+  // Bind the function to the Connect Wallet button
   document.addEventListener('DOMContentLoaded', () => {
     const connectButton = document.getElementById('connect-wallet');
-    connectButton.addEventListener('click', connectPhantomWallet);
+    if (connectButton) {
+      connectButton.addEventListener('click', connectPhantomWallet);
+      console.log("Connect Wallet button initialized.");
+    } else {
+      console.error("Connect Wallet button not found in the DOM.");
+    }
   });
 </script>
+
 
 
 </body>
