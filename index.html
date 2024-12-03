@@ -655,85 +655,42 @@ section {
 
 
 
-<!-- JavaScript for Rain Effect and Wallet Connection -->
-<script>
-  // Rain effect generator
-  function createRain() {
-    const rainContainer = document.querySelector('.rain');
-    for (let i = 0; i < 100; i++) {
-      const rainDrop = document.createElement('div');
-      rainDrop.classList.add('rain-drop');
-      rainDrop.style.left = `${Math.random() * 100}vw`;
-      rainDrop.style.animationDuration = `${Math.random() * 2 + 2}s`;
-      rainDrop.style.animationDelay = `${Math.random() * 5}s`;
-      rainContainer.appendChild(rainDrop);
+<!-- JavaScript -->
+  <script>
+    // Rain Effect
+    function createRain() {
+      const rainContainer = document.querySelector('.rain');
+      for (let i = 0; i < 100; i++) {
+        const rainDrop = document.createElement('div');
+        rainDrop.classList.add('rain-drop');
+        rainDrop.style.left = `${Math.random() * 100}vw`;
+        rainDrop.style.animationDuration = `${Math.random() * 2 + 2}s`;
+        rainDrop.style.animationDelay = `${Math.random() * 5}s`;
+        rainContainer.appendChild(rainDrop);
+      }
     }
-  }
-  createRain();
+    createRain();
 
-  // Scroll Fade-In Effect
-  function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return rect.top < window.innerHeight && rect.bottom >= 0;
-  }
+    // Phantom Wallet Connection
+    const connectButton = document.getElementById('connect-wallet');
+    const walletAddressText = document.getElementById('wallet-address');
 
-  function handleScroll() {
-    const sections = document.querySelectorAll("section");
-    sections.forEach((section) => {
-      if (isInViewport(section)) {
-        section.classList.add("visible");
+    connectButton.addEventListener('click', async () => {
+      if (window.solana && window.solana.isPhantom) {
+        try {
+          const response = await window.solana.connect();
+          const walletAddress = response.publicKey.toString();
+          walletAddressText.innerText = `Connected Wallet Address: ${walletAddress}`;
+          connectButton.innerText = 'Wallet Connected';
+          connectButton.disabled = true;
+        } catch (error) {
+          alert('Failed to connect to Phantom Wallet. Please try again.');
+        }
+      } else {
+        alert('Phantom Wallet is not installed. Please install it from https://phantom.app.');
       }
     });
-  }
-
-  window.addEventListener("scroll", handleScroll);
-  handleScroll(); // Trigger on load to show any sections already in view
-
-<script>
-  // Detect Phantom Wallet
-  function isPhantomWalletInstalled() {
-    console.log("Checking for Phantom Wallet...");
-    const isInstalled = window.solana && window.solana.isPhantom;
-    console.log("Phantom Wallet Installed:", isInstalled);
-    return isInstalled;
-  }
-
-  // Handle wallet connection
-  async function connectPhantomWallet() {
-    console.log("Connect Wallet button clicked.");
-    if (isPhantomWalletInstalled()) {
-      try {
-        console.log("Connecting to Phantom Wallet...");
-        const response = await window.solana.connect();
-        console.log("Connected to Phantom Wallet:", response);
-        const walletAddress = response.publicKey.toString();
-        console.log("Wallet Address:", walletAddress);
-
-        // Display the wallet address
-        const walletAddressElement = document.getElementById('wallet-address');
-        walletAddressElement.innerText = `Connected Wallet Address: ${walletAddress}`;
-      } catch (error) {
-        console.error("Error connecting to Phantom Wallet:", error);
-        alert("Failed to connect to Phantom Wallet. Please try again.");
-      }
-    } else {
-      console.error("Phantom Wallet not detected.");
-      alert("Phantom Wallet is not installed. Please install it from https://phantom.app.");
-    }
-  }
-
-  // Bind the function to the Connect Wallet button
-  document.addEventListener('DOMContentLoaded', () => {
-    const connectButton = document.getElementById('connect-wallet');
-    if (connectButton) {
-      connectButton.addEventListener('click', connectPhantomWallet);
-      console.log("Connect Wallet button initialized.");
-    } else {
-      console.error("Connect Wallet button not found in the DOM.");
-    }
-  });
-</script>
-
+  </script>
 
 
 </body>
