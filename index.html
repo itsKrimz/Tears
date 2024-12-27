@@ -619,47 +619,116 @@ section {
   window.addEventListener("scroll", handleScroll);
   handleScroll(); // Trigger on load to show any sections already in view
 
+  // Phantom Wallet Connection Logic
+  const connectButton = document.getElementById('connect-wallet');
+  const walletAddressText = document.getElementById('wallet-address');
 
+  async function connectPhantomWallet() {
+    if (window.solana && window.solana.isPhantom) {
+      try {
+        // Request connection to the wallet
+        await window.solana.connect({ onlyIfTrusted: false });
+        const walletAddress = window.solana.publicKey.toString();
 
-
-
-<!-- JavaScript -->
-  <script>
-    // Rain Effect
-    function createRain() {
-      const rainContainer = document.querySelector('.rain');
-      for (let i = 0; i < 100; i++) {
-        const rainDrop = document.createElement('div');
-        rainDrop.classList.add('rain-drop');
-        rainDrop.style.left = `${Math.random() * 100}vw`;
-        rainDrop.style.animationDuration = `${Math.random() * 2 + 2}s`;
-        rainDrop.style.animationDelay = `${Math.random() * 5}s`;
-        rainContainer.appendChild(rainDrop);
+        // Display wallet address
+        walletAddressText.innerText = `Connected Wallet Address: ${walletAddress}`;
+        connectButton.innerText = 'Wallet Connected';
+        connectButton.disabled = true; // Disable the button after successful connection
+      } catch (error) {
+        console.error('Error connecting to Phantom Wallet:', error);
+        alert('Failed to connect to Phantom Wallet. Please try again.');
       }
+    } else {
+      alert('Phantom Wallet is not installed. Please install it and try again.');
     }
-    createRain();
+  }
 
-    // Phantom Wallet Connection
-    const connectButton = document.getElementById('connect-wallet');
-    const walletAddressText = document.getElementById('wallet-address');
+  connectButton.addEventListener('click', connectPhantomWallet);
 
-    connectButton.addEventListener('click', async () => {
-      if (window.solana && window.solana.isPhantom) {
-        try {
-          const response = await window.solana.connect();
-          const walletAddress = response.publicKey.toString();
-          walletAddressText.innerText = `Connected Wallet Address: ${walletAddress}`;
-          connectButton.innerText = 'Wallet Connected';
-          connectButton.disabled = true;
-        } catch (error) {
-          alert('Failed to connect to Phantom Wallet. Please try again.');
-        }
-      } else {
-        alert('Phantom Wallet is not installed. Please install it from https://phantom.app.');
+  // Popup Toggle Function
+  function togglePopup(side) {
+    const popup = document.getElementById(`popup-${side}`);
+    popup.classList.toggle('active');
+  }
+</script>
+
+
+
+
+<!-- JavaScript for Rain Effect and Wallet Connection -->
+<script>
+  // Rain effect generator
+  function createRain() {
+    const rainContainer = document.querySelector('.rain');
+    for (let i = 0; i < 100; i++) {
+      const rainDrop = document.createElement('div');
+      rainDrop.classList.add('rain-drop');
+      rainDrop.style.left = `${Math.random() * 100}vw`;
+      rainDrop.style.animationDuration = `${Math.random() * 2 + 2}s`;
+      rainDrop.style.animationDelay = `${Math.random() * 5}s`;
+      rainContainer.appendChild(rainDrop);
+    }
+  }
+  createRain();
+
+  // Scroll Fade-In Effect
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom >= 0;
+  }
+
+  function handleScroll() {
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => {
+      if (isInViewport(section)) {
+        section.classList.add("visible");
       }
     });
-  </script>
+  }
 
+  window.addEventListener("scroll", handleScroll);
+  handleScroll(); // Trigger on load to show any sections already in view
+
+  // Phantom Wallet Connection Logic
+  function isPhantomWalletInstalled() {
+    return window.solana && window.solana.isPhantom;
+  }
+
+  async function connectPhantomWallet() {
+    if (isPhantomWalletInstalled()) {
+      try {
+        const response = await window.solana.connect();
+        const walletAddress = response.publicKey.toString();
+
+        // Display the wallet address
+        const walletAddressText = document.getElementById('wallet-address');
+        walletAddressText.innerText = `Connected Wallet Address: ${walletAddress}`;
+
+        // Update button text and disable it
+        const connectButton = document.getElementById('connect-wallet');
+        connectButton.innerText = 'Wallet Connected';
+        connectButton.disabled = true;
+      } catch (error) {
+        console.error('Error connecting to Phantom Wallet:', error);
+        alert('Failed to connect to Phantom Wallet. Please try again.');
+      }
+    } else {
+      alert('Phantom Wallet is not installed. Please install it from https://phantom.app.');
+    }
+  }
+
+  // Add event listener to the connect wallet button
+  document.addEventListener('DOMContentLoaded', () => {
+    const connectButton = document.getElementById('connect-wallet');
+    connectButton.addEventListener('click', connectPhantomWallet);
+  });
+
+  // Popup Toggle Function
+  function togglePopup(side) {
+    const popup = document.getElementById(`popup-${side}`);
+    popup.classList.toggle('active');
+  }
+</script>
 
 </body>
 </html>
